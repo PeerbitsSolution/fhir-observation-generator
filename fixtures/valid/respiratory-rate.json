@@ -1,0 +1,8 @@
+{
+  "deviceType": "respiratory-rate",
+  "value": 16,
+  "unit": "breaths/min",
+  "timestamp": "2026-08-06T08:32:00Z",
+  "patientRef": "Patient/pat-rpm-101",
+  "deviceId": "Device/resp-monitor-55"
+}

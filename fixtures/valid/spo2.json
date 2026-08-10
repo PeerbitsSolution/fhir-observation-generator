@@ -1,0 +1,8 @@
+{
+  "deviceType": "spo2",
+  "value": 98,
+  "unit": "%",
+  "timestamp": "2026-08-06T08:31:00Z",
+  "patientRef": "Patient/pat-rpm-101",
+  "deviceId": "Device/pulse-ox-304"
+}

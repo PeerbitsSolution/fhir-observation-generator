@@ -1,0 +1,11 @@
+{
+  "deviceType": "blood-pressure",
+  "value": {
+    "systolic": 120,
+    "diastolic": 80
+  },
+  "unit": "mmHg",
+  "timestamp": "2026-08-06T08:30:00Z",
+  "patientRef": "Patient/pat-rpm-101",
+  "deviceId": "Device/bp-cuff-9021"
+}

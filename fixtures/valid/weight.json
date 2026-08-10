@@ -1,0 +1,8 @@
+{
+  "deviceType": "weight",
+  "value": 150,
+  "unit": "lbs",
+  "timestamp": "2026-08-06T07:15:00Z",
+  "patientRef": "Patient/pat-rpm-101",
+  "deviceId": "Device/smart-scale-441"
+}

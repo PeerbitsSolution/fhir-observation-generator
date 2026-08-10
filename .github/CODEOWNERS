@@ -1,0 +1,6 @@
+# Security and accuracy-sensitive surfaces: LOINC mapping and unit conversion
+*                       @peerbits/core-devs
+/src/loinc-map.ts       @peerbits/core-devs
+/src/units.ts           @peerbits/core-devs
+/docs/LOINC_REFERENCE.md @peerbits/core-devs
+SECURITY.md             @peerbits/core-devs

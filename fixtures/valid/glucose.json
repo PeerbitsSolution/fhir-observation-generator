@@ -1,0 +1,8 @@
+{
+  "deviceType": "glucose",
+  "value": 110,
+  "unit": "mg/dL",
+  "timestamp": "2026-08-06T07:30:00Z",
+  "patientRef": "Patient/pat-rpm-101",
+  "deviceId": "Device/glucometer-882"
+}
