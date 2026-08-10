@@ -1,8 +1,30 @@
 # fhir-observation-generator
 
-> Generate FHIR R4-shaped Observation resources from Remote Patient Monitoring (RPM) device readings, with LOINC coding and UCUM unit conversion.
+> Lightweight, dependency-free FHIR R4 Observation generator for normalized RPM device readings.
 
-**Category:** RPM — Device & Observation Utilities · **License:** Apache-2.0 · **Status:** Release candidate (v1.0.0)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D20-brightgreen.svg)](#3-local-installation)
+[![FHIR](https://img.shields.io/badge/FHIR-R4-orange.svg)](https://hl7.org/fhir/R4/)
+[![CI](https://github.com/PeerbitsSolution/fhir-observation-generator/actions/workflows/ci.yml/badge.svg)](https://github.com/PeerbitsSolution/fhir-observation-generator/actions/workflows/ci.yml)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6.svg)](https://www.typescriptlang.org/)
+
+**Category:** RPM — Device & Observation Utilities · **License:** Apache-2.0 · **Status:** alpha
+
+---
+
+## Table of contents
+
+1. [What problem does this solve?](#1-what-problem-does-this-solve)
+2. [Features](#2-features)
+3. [Local installation](#3-local-installation)
+4. [Quick Start](#4-quick-start)
+5. [Architecture](#5-architecture)
+6. [Example Usage](#6-example-usage)
+7. [Safety and validation](#7-safety-and-validation)
+8. [Roadmap](#8-roadmap)
+9. [Contributing & Testing](#9-contributing--testing)
+10. [License](#10-license)
+11. [About PeerbitsSolution](#11-about-peerbitssolution)
 
 ---
 
@@ -19,10 +41,15 @@ This library provides a focused, auditable conversion layer for the supported vi
 - **Structural Self-Check:** Built-in validation for essential Observation fields (`status`, `category`, `code`, `subject`, `effectiveDateTime`, `valueQuantity`/`component`).
 - **Zero Runtime Dependencies:** Lightweight, pure TypeScript transformation engine suitable for browser, Node.js, and edge environments.
 
-## 3. Installation
+## 3. Local installation
+
+This project is used directly from a local clone. It is not currently offered through npm.
 
 ```bash
-npm install fhir-observation-generator
+git clone https://github.com/PeerbitsSolution/fhir-observation-generator.git
+cd fhir-observation-generator
+npm ci
+npm run build
 ```
 
 ## 4. Quick Start
@@ -46,7 +73,7 @@ npm install fhir-observation-generator
 ### Conversion Code
 
 ```typescript
-import { toObservation, DeviceReading } from "fhir-observation-generator";
+import { toObservation, type DeviceReading } from "./src/index.js";
 
 const reading: DeviceReading = {
   deviceType: "blood-pressure",
@@ -151,7 +178,7 @@ The library is organized into decoupled, single-responsibility modules:
 Full runnable code examples are available under `docs/examples/`:
 
 - [Basic Conversion Example](./docs/examples/basic-conversion): Single reading conversion and temperature unit handling.
-- [Batch with fhir-client](./docs/examples/batch-with-fhir-client): Transaction bundle generation and composition with `fhir-client`.
+- [Batch with fhir-client](./docs/examples/batch-with-fhir-client): Transaction bundle generation and composition with `@peerbits/fhir-client`.
 
 ## 7. Safety and validation
 
@@ -165,14 +192,14 @@ Full runnable code examples are available under `docs/examples/`:
 - [ ] Official HL7 FHIR / US Core Validator integration support.
 - [ ] Support for continuous streaming device reading series.
 
-## 9. Contributing
+## 9. Contributing & Testing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for development guidelines and setup instructions.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for local setup, tests, build, and package checks.
 
 ## 10. License
 
 Apache License 2.0 — see [LICENSE](./LICENSE).
 
-## 11. About Peerbits
+## 11. About PeerbitsSolution
 
-`fhir-observation-generator` is part of the [Peerbits HealthTech Open Source](https://github.com/peerbits) initiative—reusable engineering components extracted from our healthcare technology work. This repository contains generalized, reusable logic only; it is not tied to any specific client engagement or commercial product.
+`fhir-observation-generator` is part of the [PeerbitsSolution HealthTech Open Source](https://github.com/PeerbitsSolution) initiative—reusable engineering components extracted from our healthcare technology work. This repository contains generalized, reusable logic only; it is not tied to any specific client engagement or commercial product.
