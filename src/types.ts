@@ -1,5 +1,5 @@
 /**
- * Device reading and FHIR Observation types for fhir-observation-generator.
+ * Device reading and FHIR Observation types for @peerbits/fhir-observation-generator.
  * Grounded in US Core Vital Signs Profile and FHIR R4 Observation resource specification.
  */
 

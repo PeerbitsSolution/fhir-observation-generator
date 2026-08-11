@@ -1,5 +1,5 @@
 /**
- * Standard UCUM unit conversions for fhir-observation-generator.
+ * Standard UCUM unit conversions for @peerbits/fhir-observation-generator.
  *
  * All formulas use exact standard UCUM conversion factors.
  * Reference unit conversions are verified against clinical standards.

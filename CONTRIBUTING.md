@@ -1,4 +1,4 @@
-# Contributing to fhir-observation-generator
+# Contributing to @peerbits/fhir-observation-generator
 
 Thanks for considering a contribution. This repo is part of the Peerbits HealthTech Open Source initiative: small, focused, spec-grounded tools.
 

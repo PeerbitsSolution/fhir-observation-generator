@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { convertUnit, normalizeUcumUnit } from "../src/index.js";
 
-describe("fhir-observation-generator: unit conversion", () => {
+describe("@peerbits/fhir-observation-generator: unit conversion", () => {
   describe("Temperature reference conversions", () => {
     it("converts 98.6°F to exactly 37°C", () => {
       const res = convertUnit(98.6, "degF", "Cel");

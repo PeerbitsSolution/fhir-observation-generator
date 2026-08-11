@@ -1,6 +1,6 @@
 # Basic Conversion Example
 
-This example demonstrates converting single device readings into FHIR Observation resources using `fhir-observation-generator`.
+This example demonstrates converting single device readings into FHIR Observation resources using `@peerbits/fhir-observation-generator`.
 
 ## How to run
 

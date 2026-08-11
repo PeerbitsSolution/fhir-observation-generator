@@ -1,8 +1,8 @@
 /**
- * Batch / Bundle Generator for fhir-observation-generator.
+ * Batch / Bundle Generator for @peerbits/fhir-observation-generator.
  *
  * Converts an array of DeviceReading objects into a FHIR R4 transaction Bundle.
- * Formatted for direct execution with fhir-client's batch/transaction builder.
+ * Formatted for direct execution with @peerbits/fhir-client's batch/transaction builder.
  */
 
 import { DeviceReading, FhirBundle, GeneratorConfig } from "./types.js";

@@ -6,7 +6,7 @@ import hrFixture from "../fixtures/valid/heart-rate.json";
 import weightFixture from "../fixtures/valid/weight.json";
 import tempFixture from "../fixtures/valid/temperature.json";
 
-describe("fhir-observation-generator: bundle generation", () => {
+describe("@peerbits/fhir-observation-generator: bundle generation", () => {
   it("readingsToBundle produces a valid transaction Bundle from mixed readings", () => {
     const readings: DeviceReading[] = [
       bpFixture as DeviceReading,

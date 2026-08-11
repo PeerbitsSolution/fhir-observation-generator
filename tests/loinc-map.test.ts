@@ -6,7 +6,7 @@ import {
   DeviceType,
 } from "../src/index.js";
 
-describe("fhir-observation-generator: LOINC mapping completeness", () => {
+describe("@peerbits/fhir-observation-generator: LOINC mapping completeness", () => {
   it("every supported deviceType in SUPPORTED_DEVICE_TYPES has a LOINC mapping entry", () => {
     for (const deviceType of SUPPORTED_DEVICE_TYPES) {
       const mapping = LOINC_MAP[deviceType];

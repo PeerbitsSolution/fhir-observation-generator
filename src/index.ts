@@ -1,5 +1,5 @@
 /**
- * fhir-observation-generator
+ * @peerbits/fhir-observation-generator
  *
  * Pure data-transformation library for generating FHIR Observation resources
  * from Remote Patient Monitoring (RPM) device readings with LOINC coding and unit conversion.

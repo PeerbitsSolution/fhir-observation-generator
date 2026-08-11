@@ -36,11 +36,11 @@ const rpmReadingsBatch: DeviceReading[] = [
 // Generate FHIR R4 transaction Bundle
 const fhirTransactionBundle = readingsToBundle(rpmReadingsBatch, { validate: true });
 
-console.log("Generated Transaction Bundle for fhir-client:");
+console.log("Generated Transaction Bundle for @peerbits/fhir-client:");
 console.log(JSON.stringify(fhirTransactionBundle, null, 2));
 
-// How to submit using fhir-client (Repo 2):
-// import { FhirClient } from "fhir-client";
+// How to submit using @peerbits/fhir-client (https://www.npmjs.com/package/@peerbits/fhir-client):
+// import { FhirClient } from "@peerbits/fhir-client";
 // const client = new FhirClient({ baseUrl: "https://fhir.example.com/r4" });
 // const response = await client.transaction(fhirTransactionBundle);
 // console.log("Transaction bundle submitted successfully:", response);

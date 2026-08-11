@@ -1,11 +1,23 @@
 {
-  "name": "fhir-observation-generator",
+  "name": "@peerbits/fhir-observation-generator",
   "version": "1.0.0",
   "description": "Generate FHIR Observation resources from RPM device readings, with correct LOINC coding and unit conversion",
   "license": "Apache-2.0",
+  "author": "PeerbitsSolution",
+  "homepage": "https://github.com/PeerbitsSolution/fhir-observation-generator#readme",
+  "bugs": {
+    "url": "https://github.com/PeerbitsSolution/fhir-observation-generator/issues"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
   "files": [
     "dist"
   ],

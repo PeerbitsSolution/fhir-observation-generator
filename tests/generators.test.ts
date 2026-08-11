@@ -20,7 +20,7 @@ import tempFixture from "../fixtures/valid/temperature.json";
 import glucoseFixture from "../fixtures/valid/glucose.json";
 import respFixture from "../fixtures/valid/respiratory-rate.json";
 
-describe("fhir-observation-generator: per-vital generators", () => {
+describe("@peerbits/fhir-observation-generator: per-vital generators", () => {
   it("blood pressure produces ONE Observation with two components (systolic and diastolic)", () => {
     const reading: DeviceReading = bpFixture as DeviceReading;
     const observation = bloodPressureToObservation(reading, { validate: true });
