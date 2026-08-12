@@ -2,7 +2,7 @@
  * Per-vital FHIR Observation generators index and generic dispatcher.
  */
 
-import { DeviceReading, FhirObservation, GeneratorConfig } from "../types.js";
+import { DeviceReading, FhirObservation, FhirR5Observation, GeneratorConfig } from "../types.js";
 import { bloodPressureToObservation } from "./blood-pressure.js";
 import { heartRateToObservation } from "./heart-rate.js";
 import { weightToObservation } from "./weight.js";
@@ -51,4 +51,18 @@ export function toObservation(
     default:
       throw new Error(`Unsupported deviceType: '${(reading as DeviceReading).deviceType}'`);
   }
+}
+
+/**
+ * Generates a FHIR R5 Observation for a device reading.
+ *
+ * The supported vital-sign elements are common to FHIR R4 and R5. This
+ * explicit R5 entry point preserves the existing R4 API while providing an
+ * R5-specific return type for R5 clients.
+ */
+export function toR5Observation(
+  reading: DeviceReading,
+  config?: GeneratorConfig
+): FhirR5Observation {
+  return toObservation(reading, config);
 }

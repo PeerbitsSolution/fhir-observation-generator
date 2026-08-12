@@ -2,6 +2,12 @@
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+- Explicit FHIR R5 Observation and transaction Bundle APIs (`toR5Observation`, `readingsToR5Bundle`).
+- FHIR R5 types and an R5 validation entry point, while retaining the existing R4 API unchanged.
+
 ## [1.0.0] - 2026-08-06
 
 ### Changed

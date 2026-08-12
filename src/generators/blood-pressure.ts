@@ -1,7 +1,7 @@
 /**
  * Blood Pressure Observation Generator.
  *
- * Grounded in FHIR R4 and US Core Blood Pressure Profile:
+ * Grounded in FHIR R4/R5 and the US Core Blood Pressure Profile:
  * Produces EXACTLY ONE Observation resource with systolic and diastolic
  * represented as component elements within the same Observation, NEVER as two separate Observations.
  */

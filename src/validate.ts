@@ -1,8 +1,8 @@
 /**
  * Structural self-check for generated FHIR Observation resources.
  *
- * Verifies mandatory fields according to the FHIR R4 Observation specification
- * and US Core Vital Signs Profile requirements:
+ * Verifies generated vital-sign fields shared by the FHIR R4 and R5 Observation
+ * specifications and US Core Vital Signs Profile requirements:
  * - resourceType: "Observation"
  * - status
  * - category (containing vital-signs coding)
@@ -12,7 +12,7 @@
  * - valueQuantity OR component array (with valid values)
  */
 
-import { FhirObservation, ValidationResult } from "./types.js";
+import { FhirObservation, FhirR5Observation, ValidationResult } from "./types.js";
 import { LOINC_SYSTEM } from "./loinc-map.js";
 
 export function validateObservation(observation: FhirObservation): ValidationResult {
@@ -89,4 +89,14 @@ export function validateObservation(observation: FhirObservation): ValidationRes
     valid: errors.length === 0,
     errors,
   };
+}
+
+/**
+ * Validates the vital-sign subset emitted by this package for FHIR R5.
+ *
+ * The generated fields have the same shape in R4 and R5. This explicit entry
+ * point lets consumers validate R5 output without relying on the legacy R4 API.
+ */
+export function validateR5Observation(observation: FhirR5Observation): ValidationResult {
+  return validateObservation(observation);
 }

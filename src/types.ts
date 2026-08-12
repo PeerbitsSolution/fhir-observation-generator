@@ -1,6 +1,6 @@
 /**
  * Device reading and FHIR Observation types for @peerbits/fhir-observation-generator.
- * Grounded in US Core Vital Signs Profile and FHIR R4 Observation resource specification.
+ * Grounded in US Core Vital Signs Profile and the FHIR R4/R5 Observation resource specifications.
  */
 
 export type DeviceType =
@@ -72,7 +72,7 @@ export interface GeneratorConfig {
   validate?: boolean;
 }
 
-// FHIR R4 Observation Resource Type Definitions
+// Shared FHIR Observation Resource Type Definitions
 
 export interface FhirCoding {
   system: string;
@@ -97,22 +97,40 @@ export interface FhirObservationComponent {
   valueQuantity?: FhirQuantity;
 }
 
-export interface FhirObservation {
+export interface FhirReference {
+  reference: string;
+}
+
+export interface FhirObservationBase {
   resourceType: "Observation";
   id?: string;
   status: string;
   category: FhirCodeableConcept[];
   code: FhirCodeableConcept;
-  subject: {
-    reference: string;
-  };
+  subject: FhirReference;
   effectiveDateTime: string;
   valueQuantity?: FhirQuantity;
   component?: FhirObservationComponent[];
-  device?: {
-    reference: string;
-  };
+  device?: FhirReference;
 }
+
+/** FHIR R4 Observation produced by the existing generator API. */
+export type FhirR4Observation = FhirObservationBase;
+
+/**
+ * FHIR R5 Observation.
+ *
+ * The generated vital-sign fields are shared by R4 and R5. R5 additionally
+ * permits an ObservationDefinition reference and a BodyStructure reference.
+ */
+export interface FhirR5Observation extends FhirObservationBase {
+  instantiatesCanonical?: string;
+  instantiatesReference?: FhirReference;
+  bodyStructure?: FhirReference;
+}
+
+/** @deprecated Use FhirR4Observation or FhirR5Observation explicitly. */
+export type FhirObservation = FhirR4Observation;
 
 export interface FhirBundleEntry {
   resource: FhirObservation;
@@ -126,6 +144,20 @@ export interface FhirBundle {
   resourceType: "Bundle";
   type: "transaction";
   entry: FhirBundleEntry[];
+}
+
+export interface FhirR5BundleEntry {
+  resource: FhirR5Observation;
+  request: {
+    method: "POST";
+    url: string;
+  };
+}
+
+export interface FhirR5Bundle {
+  resourceType: "Bundle";
+  type: "transaction";
+  entry: FhirR5BundleEntry[];
 }
 
 export interface ValidationResult {
