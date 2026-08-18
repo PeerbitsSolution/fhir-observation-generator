@@ -60,7 +60,9 @@ npm ci
 npm run build
 ```
 
-## 4. Quick Start
+## 4. Demo and Quick Start
+
+[Peerbits HealthTech - Fhir Observation Generator Demo](https://healthcare.peerbits.com/demo/fhir-generator)
 
 ### Before (Raw RPM Device Reading JSON)
 
