@@ -10,6 +10,7 @@ import { spo2ToObservation } from "./spo2.js";
 import { temperatureToObservation } from "./temperature.js";
 import { glucoseToObservation } from "./glucose.js";
 import { respiratoryRateToObservation } from "./respiratory-rate.js";
+import { bodyCompositionToObservation, continuousGlucoseToObservation, ecgToObservation, extendedScalarToObservation, sleepToObservation, spirometryToObservation } from "./extended.js";
 
 export {
   bloodPressureToObservation,
@@ -19,6 +20,12 @@ export {
   temperatureToObservation,
   glucoseToObservation,
   respiratoryRateToObservation,
+  bodyCompositionToObservation,
+  continuousGlucoseToObservation,
+  ecgToObservation,
+  extendedScalarToObservation,
+  sleepToObservation,
+  spirometryToObservation,
 };
 
 /**
@@ -48,6 +55,19 @@ export function toObservation(
       return glucoseToObservation(reading, config);
     case "respiratory-rate":
       return respiratoryRateToObservation(reading, config);
+    case "heart-rate-variability":
+    case "perfusion-index":
+      return extendedScalarToObservation(reading, config);
+    case "continuous-glucose":
+      return continuousGlucoseToObservation(reading, config);
+    case "body-composition":
+      return bodyCompositionToObservation(reading, config);
+    case "spirometry":
+      return spirometryToObservation(reading, config);
+    case "sleep":
+      return sleepToObservation(reading, config);
+    case "ecg":
+      return ecgToObservation(reading, config);
     default:
       throw new Error(`Unsupported deviceType: '${(reading as DeviceReading).deviceType}'`);
   }

@@ -4,6 +4,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-09-07
+
+### Added
+- Observation generation for CGM, body composition, spirometry, sleep sessions, ECG events, SDNN HRV, and postductal perfusion index.
+- FHIR periods, coded results, waveform references, and additional UCUM duration/volume conversions.
+
+### Safety
+- Refuse ambiguous HRV methods, perfusion sites, and unmapped body-composition metrics instead of guessing clinical codes.
+
 ### Added
 - Explicit FHIR R5 Observation and transaction Bundle APIs (`toR5Observation`, `readingsToR5Bundle`).
 - FHIR R5 types and an R5 validation entry point, while retaining the existing R4 API unchanged.

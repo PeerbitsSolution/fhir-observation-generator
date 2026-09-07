@@ -53,6 +53,14 @@ export const LOINC_MAP: Record<DeviceType, LoincMapping> = {
     defaultUcumUnit: "/min",
     defaultUnitDisplay: "beats/min",
   },
+  "heart-rate-variability": {
+    deviceType: "heart-rate-variability", loincCode: "80404-7", display: "R-R interval standard deviation (heart rate variability)",
+    category: VITAL_SIGNS_CATEGORY, defaultUcumUnit: "ms", defaultUnitDisplay: "ms",
+  },
+  ecg: {
+    deviceType: "ecg", loincCode: "8619-9", display: "Rhythm segment interpretation by EKG",
+    category: { ...VITAL_SIGNS_CATEGORY, code: "exam", display: "Exam" }, defaultUcumUnit: "1", defaultUnitDisplay: "",
+  },
   weight: {
     deviceType: "weight",
     loincCode: "29463-7",
@@ -61,6 +69,10 @@ export const LOINC_MAP: Record<DeviceType, LoincMapping> = {
     defaultUcumUnit: "kg",
     defaultUnitDisplay: "kg",
   },
+  "body-composition": {
+    deviceType: "body-composition", loincCode: "43143-7", display: "Weighing device panel",
+    category: VITAL_SIGNS_CATEGORY, defaultUcumUnit: "1", defaultUnitDisplay: "",
+  },
   spo2: {
     deviceType: "spo2",
     loincCode: "59408-5",
@@ -68,6 +80,10 @@ export const LOINC_MAP: Record<DeviceType, LoincMapping> = {
     category: VITAL_SIGNS_CATEGORY,
     defaultUcumUnit: "%",
     defaultUnitDisplay: "%",
+  },
+  "perfusion-index": {
+    deviceType: "perfusion-index", loincCode: "73794-0", display: "Perfusion index by pulse oximetry",
+    category: VITAL_SIGNS_CATEGORY, defaultUcumUnit: "%", defaultUnitDisplay: "%",
   },
   temperature: {
     deviceType: "temperature",
@@ -85,6 +101,10 @@ export const LOINC_MAP: Record<DeviceType, LoincMapping> = {
     defaultUcumUnit: "mg/dL",
     defaultUnitDisplay: "mg/dL",
   },
+  "continuous-glucose": {
+    deviceType: "continuous-glucose", loincCode: "99504-3", display: "Glucose in interstitial fluid",
+    category: { ...VITAL_SIGNS_CATEGORY, code: "laboratory", display: "Laboratory" }, defaultUcumUnit: "mg/dL", defaultUnitDisplay: "mg/dL",
+  },
   "respiratory-rate": {
     deviceType: "respiratory-rate",
     loincCode: "9279-1",
@@ -92,6 +112,14 @@ export const LOINC_MAP: Record<DeviceType, LoincMapping> = {
     category: VITAL_SIGNS_CATEGORY,
     defaultUcumUnit: "/min",
     defaultUnitDisplay: "breaths/min",
+  },
+  spirometry: {
+    deviceType: "spirometry", loincCode: "81459-0", display: "Spirometry panel",
+    category: { ...VITAL_SIGNS_CATEGORY, code: "exam", display: "Exam" }, defaultUcumUnit: "1", defaultUnitDisplay: "",
+  },
+  sleep: {
+    deviceType: "sleep", loincCode: "93832-4", display: "Sleep duration",
+    category: { ...VITAL_SIGNS_CATEGORY, code: "activity", display: "Activity" }, defaultUcumUnit: "min", defaultUnitDisplay: "min",
   },
 };
 

@@ -24,6 +24,15 @@ const SUPPORTED_UCUM_UNITS = new Set([
   "/min",
   "%",
   "mm[Hg]",
+  "ms",
+  "s",
+  "min",
+  "h",
+  "L",
+  "mL",
+  "L/min",
+  "kg/m2",
+  "1",
 ]);
 
 /**
@@ -95,6 +104,16 @@ export function normalizeUcumUnit(unit: string): string {
     case "mm[hg]":
     case "mm hg":
       return "mm[Hg]";
+
+    case "ms": return "ms";
+    case "s": case "sec": case "second": case "seconds": return "s";
+    case "min": case "minute": case "minutes": return "min";
+    case "h": case "hr": case "hour": case "hours": return "h";
+    case "l": case "liter": case "liters": case "litre": case "litres": return "L";
+    case "ml": case "milliliter": case "milliliters": case "millilitre": case "millilitres": return "mL";
+    case "l/min": return "L/min";
+    case "kg/m2": case "kg/m^2": return "kg/m2";
+    case "1": case "ratio": return "1";
 
     default:
       return unit;
@@ -169,6 +188,18 @@ export function convertUnit(
       unit: getUnitDisplay(targetUcum),
       ucumCode: targetUcum,
     };
+  }
+
+  const durationInSeconds: Readonly<Record<string, number>> = { ms: 0.001, s: 1, min: 60, h: 3600 };
+  if (sourceUcum in durationInSeconds && targetUcum in durationInSeconds) {
+    const converted = value * durationInSeconds[sourceUcum] / durationInSeconds[targetUcum];
+    return { value: roundToFourDecimals(converted), unit: getUnitDisplay(targetUcum), ucumCode: targetUcum };
+  }
+  if (sourceUcum === "mL" && targetUcum === "L") {
+    return { value: roundToFourDecimals(value / 1000), unit: "L", ucumCode: "L" };
+  }
+  if (sourceUcum === "L" && targetUcum === "mL") {
+    return { value: roundToFourDecimals(value * 1000), unit: "mL", ucumCode: "mL" };
   }
 
   // Temperature Conversions

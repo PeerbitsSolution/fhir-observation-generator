@@ -1,6 +1,6 @@
 {
   "name": "@peerbits/fhir-observation-generator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Generate FHIR R4 and R5 Observation resources from RPM device readings, with correct LOINC coding and unit conversion",
   "license": "Apache-2.0",
   "author": "PeerbitsSolution",

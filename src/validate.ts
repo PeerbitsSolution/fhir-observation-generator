@@ -33,11 +33,11 @@ export function validateObservation(observation: FhirObservation): ValidationRes
   if (!Array.isArray(observation.category) || observation.category.length === 0) {
     errors.push("Missing required field: category (must be non-empty array)");
   } else {
-    const hasVitalSignsCategory = observation.category.some((cat) =>
-      cat.coding?.some((c) => c.code === "vital-signs")
+    const hasCategoryCoding = observation.category.some((cat) =>
+      cat.coding?.some((c) => c.system && c.code)
     );
-    if (!hasVitalSignsCategory) {
-      errors.push("Missing required category coding with code 'vital-signs'");
+    if (!hasCategoryCoding) {
+      errors.push("Category must contain at least one coding with system and code");
     }
   }
 
@@ -56,8 +56,11 @@ export function validateObservation(observation: FhirObservation): ValidationRes
     errors.push("Missing required field: subject.reference");
   }
 
-  if (!observation.effectiveDateTime || isNaN(Date.parse(observation.effectiveDateTime))) {
-    errors.push("Missing or invalid required field: effectiveDateTime (must be valid ISO date string)");
+  const validDateTime = !!observation.effectiveDateTime && !isNaN(Date.parse(observation.effectiveDateTime));
+  const validPeriod = !!observation.effectivePeriod && !isNaN(Date.parse(observation.effectivePeriod.start)) &&
+    !isNaN(Date.parse(observation.effectivePeriod.end)) && Date.parse(observation.effectivePeriod.start) <= Date.parse(observation.effectivePeriod.end);
+  if (!validDateTime && !validPeriod) {
+    errors.push("Observation requires a valid effectiveDateTime or effectivePeriod");
   }
 
   // Value check: Must have valueQuantity OR component array
@@ -79,7 +82,10 @@ export function validateObservation(observation: FhirObservation): ValidationRes
         Number.isFinite(comp.valueQuantity.value)
     );
 
-  if (!hasValueQuantity && !hasComponents) {
+  const hasCodeableConcept = !!observation.valueCodeableConcept &&
+    (!!observation.valueCodeableConcept.text || !!observation.valueCodeableConcept.coding?.length);
+
+  if (!hasValueQuantity && !hasComponents && !hasCodeableConcept) {
     errors.push(
       "Observation must contain either a valid valueQuantity or a valid component array with at least 2 components"
     );

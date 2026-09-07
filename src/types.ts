@@ -6,20 +6,34 @@
 export type DeviceType =
   | "blood-pressure"
   | "heart-rate"
+  | "heart-rate-variability"
+  | "ecg"
   | "weight"
+  | "body-composition"
   | "spo2"
+  | "perfusion-index"
   | "temperature"
   | "glucose"
-  | "respiratory-rate";
+  | "continuous-glucose"
+  | "respiratory-rate"
+  | "spirometry"
+  | "sleep";
 
 export const SUPPORTED_DEVICE_TYPES: DeviceType[] = [
   "blood-pressure",
   "heart-rate",
+  "heart-rate-variability",
+  "ecg",
   "weight",
+  "body-composition",
   "spo2",
+  "perfusion-index",
   "temperature",
   "glucose",
+  "continuous-glucose",
   "respiratory-rate",
+  "spirometry",
+  "sleep",
 ];
 
 export interface BloodPressureValue {
@@ -27,7 +41,14 @@ export interface BloodPressureValue {
   diastolic: number;
 }
 
-export type DeviceReadingValue = number | BloodPressureValue;
+export interface MetricValue { value: number; unit: string; }
+export interface BodyCompositionValue { weight?: number; bmi?: number; bodyFat?: number; fatMass?: number; fatFreeMass?: number; muscleMass?: number; hydration?: number; boneMass?: number; }
+export interface ContinuousGlucoseValue { glucose: number; rateOfChange?: number; trend?: string; }
+export interface SpirometryValue { fev1?: number; fvc?: number; pef?: number; fev1FvcRatio?: number; }
+export interface SleepValue { totalDuration: number; deepSleep?: number; lightSleep?: number; remSleep?: number; awakeTime?: number; timeInBed?: number; efficiency?: number; }
+export interface EcgValue { averageHeartRate?: number; rhythmClassification?: string; durationSeconds?: number; }
+
+export type DeviceReadingValue = number | BloodPressureValue | BodyCompositionValue | ContinuousGlucoseValue | SpirometryValue | SleepValue | EcgValue;
 
 export interface DeviceReading {
   /**
@@ -54,6 +75,9 @@ export interface DeviceReading {
    * Optional opaque device identifier (e.g. "Device/d-98765").
    */
   deviceId?: string;
+  metrics?: Record<string, MetricValue | undefined>;
+  metadata?: Record<string, unknown>;
+  waveformRef?: { reference: string; lead?: string; sampleCount?: number; samplingRateHz?: number; checksum?: string };
 }
 
 export interface GeneratorConfig {
@@ -81,7 +105,7 @@ export interface FhirCoding {
 }
 
 export interface FhirCodeableConcept {
-  coding: FhirCoding[];
+  coding?: FhirCoding[];
   text?: string;
 }
 
@@ -95,6 +119,7 @@ export interface FhirQuantity {
 export interface FhirObservationComponent {
   code: FhirCodeableConcept;
   valueQuantity?: FhirQuantity;
+  valueCodeableConcept?: FhirCodeableConcept;
 }
 
 export interface FhirReference {
@@ -108,9 +133,12 @@ export interface FhirObservationBase {
   category: FhirCodeableConcept[];
   code: FhirCodeableConcept;
   subject: FhirReference;
-  effectiveDateTime: string;
+  effectiveDateTime?: string;
+  effectivePeriod?: { start: string; end: string };
   valueQuantity?: FhirQuantity;
   component?: FhirObservationComponent[];
+  valueCodeableConcept?: FhirCodeableConcept;
+  derivedFrom?: FhirReference[];
   device?: FhirReference;
 }
 

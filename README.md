@@ -34,7 +34,7 @@ This library provides a focused, auditable conversion layer for the supported vi
 
 ## 2. Features
 
-- **7 Core RPM Vital Types Supported:** Blood pressure, heart rate, body weight, SpO2, body temperature, blood glucose, and respiratory rate.
+- **Extended RPM coverage:** Blood pressure, heart rate, SDNN HRV, ECG events, weight/body composition, SpO2, postductal perfusion index, temperature, glucose/CGM, respiratory rate, spirometry, and sleep sessions.
 - **Component-Based Blood Pressure:** Generates exactly one Observation with systolic (`8480-6`) and diastolic (`8462-4`) components under panel LOINC `85354-9`.
 - **Verified UCUM Unit Conversion:** Converts raw units (e.g. °F to °C, lbs to kg, mg/dL to mmol/L) using standard reference formulas.
 - **Single Source LOINC Mapping:** Fully auditable table of codes (`http://loinc.org`) and FHIR categories (`vital-signs`).
